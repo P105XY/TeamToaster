@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ItemBase.h"
+#include "Inventory.h"
 
 // Sets default values
-AItemBase::AItemBase()
+AInventory::AInventory()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -12,21 +12,28 @@ AItemBase::AItemBase()
 }
 
 // Called when the game starts or when spawned
-void AItemBase::BeginPlay()
+void AInventory::BeginPlay()
 {
 	Super::BeginPlay();
 
 }
 
 // Called every frame
-void AItemBase::Tick(float DeltaTime)
+void AInventory::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-void AItemBase::UsingItem()
+void AInventory::ClearInventory()
 {
-	this->currentStack -= 1;
-
 }
+
+void AInventory::GetItem(ItemBase* getit)
+{
+}
+
+void AInventory::UseItem(ItemBase* usingit)
+{
+}
+

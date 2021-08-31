@@ -4,24 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ItemBase.generated.h"
+#include "ItemBase.h"
+#include "MainPlayer.h"
+#include "Inventory.generated.h"
 
 UCLASS()
-class KNN_API AItemBase : public AActor
+class KNN_API AInventory : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	AItemBase();
+	AInventory();
 
-	//view in inventory
-	FName itemName;
-	UTexture2D* iconImage;
-	float currentStack;
-	float currentHealing;
-	float maxStack;
-
+	class ItemBase* curItem;
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,5 +27,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void UsingItem();
+	void ClearInventory();
+	void GetItem(ItemBase* getit);
+	void UseItem(ItemBase* usingit);
 };

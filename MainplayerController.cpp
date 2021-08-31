@@ -21,6 +21,26 @@ void AMainplayerController::BeginPlay()
 			crosshair->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
+
+	if (wInventory)
+	{
+		this->inventory = CreateWidget<UUserWidget>(this, wInventory);
+		if (inventory)
+		{
+			inventory->AddToViewport();
+			inventory->SetVisibility(ESlateVisibility::Hidden);
+		}
+	}
+
+	if (wQuickSlot)
+	{
+		this->quickslot = CreateWidget<UUserWidget>(this, wQuickSlot);
+		if (quickslot)
+		{
+			quickslot->AddToViewport();
+			quickslot->SetVisibility(ESlateVisibility::Hidden);
+		}
+	}
 }
 
 void AMainplayerController::Tick(float DeltaTime)
@@ -45,5 +65,25 @@ void AMainplayerController::SetRemoveHUD()
 		this->bCrosshairvisible = false;
 		this->crosshair->SetVisibility(ESlateVisibility::Hidden);
 	}
+}
+
+void AMainplayerController::SetVisiblePause()
+{
+
+}
+
+void AMainplayerController::SetRemovePause()
+{
+
+}
+
+void AMainplayerController::SetVisibleQuickSlot()
+{
+
+}
+
+void AMainplayerController::SetRemoveQuickSlot()
+{
+
 }
 

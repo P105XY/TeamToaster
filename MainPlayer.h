@@ -19,6 +19,7 @@
 #include "Components/PoseableMeshComponent.h"
 #include "MainplayerController.h"
 #include "Engine/SkeletalMesh.h"
+#include "ItemBase.h"
 #include "PlayerHud.h"
 #include "MainPlayer.generated.h"
 
@@ -73,24 +74,15 @@ public:
 		EPlayerStatus playerstatus;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		EPlayerCondition playercondition;
-
 	UPROPERTY(EditAnywhere)
 		class USpringArmComponent* camArm;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character")
 		class UBoxComponent* agroBox;
-
 	class UCameraComponent* cam;
-
 	class AMainplayerController* pcon;
-
-	UPROPERTY(VisibleAnywhere)
-		TArray<UCameraComponent*> Cams;
-
-	UPROPERTY(EditAnywhere)
-		class USkeletalMesh* sktlMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class APlayerHud* phud;
+	class ItemBase* currentItem;
 
 	FVector battleCamLoc;
 
@@ -129,6 +121,12 @@ public:
 	void GetLiteralSpeed();
 	void IncreaseHealth(float healingamount);
 	void DecreaseHealth(float damageamount);
+	void SwitchInventory();
+	void SwitchQuickSlot();
+
+	//InlineFunc
+	FORCEINLINE void GetChoiceItem(ItemBase* it) { this->currentItem = it; }
+
 	//return value functions
 	bool CanMove(float value);
 };

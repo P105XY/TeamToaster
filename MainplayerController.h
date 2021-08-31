@@ -24,13 +24,29 @@ protected:
 public:
 	AMainplayerController();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "crosshair")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
 		TSubclassOf<class UUserWidget> wCrosshair;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "crosshair")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
 		UUserWidget* crosshair;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
+		TSubclassOf<class UUserWidget> wInventory;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
+		UUserWidget* inventory;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
+		TSubclassOf<class UUserWidget> wQuickSlot;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
+		UUserWidget* quickslot;
 
 	bool bCrosshairvisible;
 
 	void SetVisibleHUD();
 	void SetRemoveHUD();
+
+	void SetVisiblePause();
+	void SetRemovePause();
+
+	void SetVisibleQuickSlot();
+	void SetRemoveQuickSlot();
 };

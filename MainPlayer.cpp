@@ -80,6 +80,10 @@ void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("LockOn", IE_Released, this, &AMainPlayer::LockOnUp);
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainPlayer::SprintDown);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainPlayer::SprintUp);
+	PlayerInputComponent->BindAction("QuickSlot", IE_Pressed, this, &AMainPlayer::SwitchQuickSlot);
+	PlayerInputComponent->BindAction("QuickSlot", IE_Released, this, &AMainPlayer::SwitchQuickSlot);
+	PlayerInputComponent->BindAction("PauseandInventory", IE_Pressed, this, &AMainPlayer::SwitchInventory);
+	PlayerInputComponent->BindAction("PauseandInventory", IE_Released, this, &AMainPlayer::SwitchInventory);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainPlayer::MoveForward);
 	PlayerInputComponent->BindAxis("MoveSide", this, &AMainPlayer::MoveSide);
@@ -208,6 +212,26 @@ void AMainPlayer::PlayerSwitchLookatFront()
 	{
 		camArm->SetRelativeLocation(FMath::VInterpTo(camArm->GetRelativeLocation(), FVector::ZeroVector, GetWorld()->GetDeltaSeconds(), 12.f));
 	}
+
+}
+
+void AMainPlayer::IncreaseHealth(float healingamount)
+{
+
+}
+
+void AMainPlayer::DecreaseHealth(float damageamount)
+{
+
+}
+
+void AMainPlayer::SwitchInventory()
+{
+
+}
+
+void AMainPlayer::SwitchQuickSlot()
+{
 
 }
 
