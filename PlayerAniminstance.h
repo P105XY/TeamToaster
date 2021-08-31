@@ -17,15 +17,17 @@ class KNN_API UPlayerAniminstance : public UAnimInstance
 	GENERATED_BODY()
 public:
 	UPlayerAniminstance();
+	virtual void NativeInitializeAnimation() override;
+	virtual void NativeBeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
 		void UpdateAnimation();
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		AMainPlayer* mainplayer;
-	UPROPERTY(VisibleAnywhere)
-		class APawn* playerpawn;
-	UPROPERTY(EditAnywhere)
-		float currerntRotPitch;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		bool bcurrentPlayerInBattle;
+		class AMainPlayer* mainplayer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class APawn* playerpawn;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		float CurrentSpeed;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		FRotator playerrot;
 };

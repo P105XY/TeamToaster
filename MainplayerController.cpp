@@ -10,12 +10,17 @@ AMainplayerController::AMainplayerController()
 
 void AMainplayerController::BeginPlay()
 {
+	Super::BeginPlay();
+
 	if (wCrosshair)
 	{
 		this->crosshair = CreateWidget<UUserWidget>(this, wCrosshair);
+		if (crosshair)
+		{
+			crosshair->AddToViewport();
+			crosshair->SetVisibility(ESlateVisibility::Hidden);
+		}
 	}
-	crosshair->AddToViewport();
-	crosshair->SetVisibility(ESlateVisibility::Hidden);
 }
 
 void AMainplayerController::Tick(float DeltaTime)
@@ -24,11 +29,21 @@ void AMainplayerController::Tick(float DeltaTime)
 
 void AMainplayerController::SetVisibleHUD()
 {
-	this->crosshair->SetVisibility(ESlateVisibility::Visible);
+	if (crosshair)
+	{
+		UE_LOG(LogTemp, Log, TEXT("set visible hud"));
+		this->bCrosshairvisible = true;
+		this->crosshair->SetVisibility(ESlateVisibility::Visible);
+	}
 }
 
 void AMainplayerController::SetRemoveHUD()
 {
-	this->crosshair->SetVisibility(ESlateVisibility::Hidden);
+	if (crosshair)
+	{
+		UE_LOG(LogTemp, Log, TEXT("set remove hud"));
+		this->bCrosshairvisible = false;
+		this->crosshair->SetVisibility(ESlateVisibility::Hidden);
+	}
 }
 

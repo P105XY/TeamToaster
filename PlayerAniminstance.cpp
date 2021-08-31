@@ -3,15 +3,29 @@
 
 #include "PlayerAniminstance.h"
 
+void UPlayerAniminstance::NativeInitializeAnimation()
+{
+	if (playerpawn == nullptr)
+		playerpawn = TryGetPawnOwner();
+}
+
+void UPlayerAniminstance::NativeBeginPlay()
+{
+	UE_LOG(LogTemp, Log, TEXT("Begin Native play"));
+	if (playerpawn == nullptr)
+		playerpawn = TryGetPawnOwner();
+	if (playerpawn != nullptr)
+	{
+		mainplayer = Cast<AMainPlayer>(playerpawn);
+	}
+}
+
 void UPlayerAniminstance::UpdateAnimation()
 {
-	if (!playerpawn)
+	if (!playerpawn) { playerpawn = TryGetPawnOwner(); }
+	if (playerpawn)
 	{
-		playerpawn = TryGetPawnOwner();
-		if (playerpawn)
-		{
-			playerpawn = Cast<AMainPlayer>(playerpawn);
-		}
+		mainplayer = Cast<AMainPlayer>(playerpawn);
 	}
 }
 

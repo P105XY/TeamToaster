@@ -23,6 +23,15 @@
 #include "MainPlayer.generated.h"
 
 UENUM(BlueprintType)
+enum class EPlayerCondition : uint8
+{
+	EPC_Normal UMETA(DisplayName = "Normal"),
+	EPC_Bleeding UMETA(DisplayName = "Bleeding"),
+	EPC_BrokenBone UMETA(DisplayName = "BrokenBone"),
+	EPC_MAX UMETA(DisplayName = "DefaultMax")
+};
+
+UENUM(BlueprintType)
 enum class EPlayerStatus : uint8
 {
 	EPS_Idle UMETA(DisplayName = "Idle"),
@@ -51,6 +60,8 @@ public:
 	float currentlength, runninglength, normallength;
 	UPROPERTY(EditAnywhere)
 		float turnrot;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		float currentSpeed;
 
 	bool bisattacking;
 	bool bisrunning;
@@ -60,6 +71,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		EPlayerStatus playerstatus;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		EPlayerCondition playercondition;
 
 	UPROPERTY(EditAnywhere)
 		class USpringArmComponent* camArm;
@@ -113,6 +126,9 @@ public:
 	void LockOnDown();
 	void LockOnUp();
 	void PlayerSwitchLookatFront();
+	void GetLiteralSpeed();
+	void IncreaseHealth(float healingamount);
+	void DecreaseHealth(float damageamount);
 	//return value functions
 	bool CanMove(float value);
 };

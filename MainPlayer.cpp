@@ -38,7 +38,6 @@ AMainPlayer::AMainPlayer()
 	cam->SetupAttachment(camArm, USpringArmComponent::SocketName);
 	cam->bUsePawnControlRotation = false;
 
-	pcon = Cast<AMainplayerController>(GetController());
 
 	battleCamLoc = FVector(120.f, 140.f, 80.f);
 }
@@ -52,6 +51,11 @@ void AMainPlayer::BeginPlay()
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	pcon = Cast<AMainplayerController>(GetController());
+
+	playerstatus = EPlayerStatus::EPS_Idle;
+	playercondition = EPlayerCondition::EPC_Normal;
 }
 
 // Called every frame
@@ -60,6 +64,7 @@ void AMainPlayer::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	PlayerSwitchLookatFront();
+	GetLiteralSpeed();
 }
 // Called to bind functionality to input
 void AMainPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -179,6 +184,14 @@ void AMainPlayer::LockOnUp()
 {
 
 }
+
+void AMainPlayer::GetLiteralSpeed()
+{
+	FVector curspeed = this->GetVelocity();
+	FVector literalSpeed = FVector(curspeed.X, curspeed.Y, 0.f);
+	currentSpeed = literalSpeed.Size();
+}
+
 static FRotator* curRot;
 static FVector* curLoc;
 
